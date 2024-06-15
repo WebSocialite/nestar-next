@@ -28,7 +28,7 @@ const TrendProperties = (props: TrendPropertiesProps) => {
 		error: getPropertiesError,
 		refetch: getPropertiesRefetch,
 	} = useQuery(GET_PROPERTIES, {
-		fetchPolicy: "cache-and-network", 
+		fetchPolicy: "cache-and-network", // birinchi cache oqib keyin networkga o'tiladi
 		variables: {input: initialInput},
 		notifyOnNetworkStatusChange:true,
 		onCompleted: (data: T) => { 

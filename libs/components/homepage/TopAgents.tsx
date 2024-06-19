@@ -21,6 +21,7 @@ const TopAgents = (props: TopAgentsProps) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const [topAgents, setTopAgents] = useState<Member[]>([]);
+	console.log("=========", topAgents);
 
 	/** APOLLO REQUESTS **/
 	const {
@@ -33,6 +34,7 @@ const TopAgents = (props: TopAgentsProps) => {
 		variables: {input: initialInput},
 		notifyOnNetworkStatusChange:true,
 		onCompleted: (data: T) => { 
+			console.log("=======", data);
 			setTopAgents(data?.getAgents?.list);
 		},
 	});

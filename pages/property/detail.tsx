@@ -27,12 +27,11 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { GET_PROPERTIES, GET_PROPERTY } from '../../apollo/user/query';
+import { GET_COMMENTS, GET_PROPERTIES, GET_PROPERTY } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import { CREATE_COMMENT, LIKE_TARGET_PROPERTY } from '../../apollo/user/mutation';
 import { sweetErrorHandling, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
-import { GET_COMMENTS } from '../../apollo/admin/query';
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -69,7 +68,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 		error: getPropertyError,
 		refetch: getPropertyRefetch,
 	} = useQuery(GET_PROPERTY, {
-		fetchPolicy: "cache-and-network", // birinchi cache oqib keyin networkga o'tiladi
+		fetchPolicy: "network-only", // birinchi cache oqib keyin networkga o'tiladi
 		variables: {input: propertyId},
 		skip: !propertyId,
 		notifyOnNetworkStatusChange:true,
@@ -138,15 +137,15 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	}, [router]);
 
 	useEffect(() => {
-		if(commentInquiry.search.commentRefId)
-		getCommentsRefetch({input: commentInquiry})
+		if(commentInquiry.search.commentRefId) {
+		getCommentsRefetch({input: commentInquiry});
+		}
 	}, [commentInquiry]);
 
 	/** HANDLERS **/
 	const changeImageHandler = (image: string) => {
 		setSlideImage(image);
 	};
-
 	const likePropertyHandler = async (user: T, id: string ) => {
 		try {
 			if(!id) return;
@@ -156,8 +155,10 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 				variables: {input: id}
 			});
 
-			await getPropertyRefetch({input: propertyId})
-			await getPropertiesRefetch({ input: {page: 1,
+			await getPropertyRefetch({input: id})
+			await getPropertiesRefetch({ 
+				input: {
+				page: 1,
 				limit: 4,
 				sort: "createdAt",
 				direction: Direction.DESC,

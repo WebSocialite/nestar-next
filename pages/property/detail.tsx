@@ -63,7 +63,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 	const [createComment] = useMutation(CREATE_COMMENT);
 
 	const {
-		loading: getPropertysLoading, // bu processda aniq animationlardi korsatar ekan
+		loading: getPropertyLoading, // bu processda aniq animationlardi korsatar ekan
 		data: getPropertyData, // data kirib kelgunga qadar error bulsa pasdagi erroni beradi
 		error: getPropertyError,
 		refetch: getPropertyRefetch,
@@ -192,7 +192,7 @@ const PropertyDetail: NextPage = ({ initialComment, ...props }: any) => {
 			await sweetErrorHandling(err);
 		}
 	};
-	if (getPropertysLoading) {
+	if (getPropertyLoading) {
 		return (<Stack sx={{display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "1080px"}}>
 			<CircularProgress size={'4rem'} /> 
 		</Stack>

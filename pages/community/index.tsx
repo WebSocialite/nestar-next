@@ -13,8 +13,8 @@ import { BoardArticlesInquiry } from '../../libs/types/board-article/board-artic
 import { BoardArticleCategory } from '../../libs/enums/board-article.enum';
 import { Messages } from '../../libs/config';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
-import { useMutation, useQuery } from '@apollo/client';
 import { LIKE_TARGET_BOARD_ARTICLE } from '../../apollo/user/mutation';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_BOARD_ARTICLES } from '../../apollo/user/query';
 
 export const getStaticProps = async ({ locale }: any) => ({
@@ -34,7 +34,7 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 	if (articleCategory) initialInput.search.articleCategory = articleCategory;
 
 	/** APOLLO REQUESTS **/
-	const [likeTargetBoardArticle] = useMutation(LIKE_TARGET_BOARD_ARTICLE);
+	const [likeTargetBoardArticle] = useMutation(LIKE_TARGET_BOARD_ARTICLE)
 
 	const {
 		loading: boardArticlesLoading,

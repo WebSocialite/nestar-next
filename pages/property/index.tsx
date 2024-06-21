@@ -40,7 +40,7 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
 
 	const {
-		loading: getPropertyLoading,
+		loading: getPropertiesLoading,
 		data: getPropertiesData,
 		error: getPropertiesError,
 		refetch : getPropertiesRefetch,

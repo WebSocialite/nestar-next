@@ -43,7 +43,7 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 		skip: !followInquiry?.search?.followerId,
 		notifyOnNetworkStatusChange : true,
 		onCompleted: (data: T) => {
-			setMemberFollowings(data?.getMemberFollowers?.list);
+			setMemberFollowings(data?.getMemberFollowings?.list);
 			setTotal(data?.getMemberFollowings?.metaCounter[0]?.total);
 		},
 	});

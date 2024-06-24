@@ -7,7 +7,7 @@ import { REACT_APP_API_URL, propertySquare } from '../../config';
 import { PropertyInput } from '../../types/property/property.input';
 import axios from 'axios';
 import { getJwtToken } from '../../auth';
-import { sweetErrorHandling, sweetMixinErrorAlert } from '../../sweetAlert';
+import { sweetErrorHandling, sweetMixinErrorAlert, sweetMixinSuccessAlert } from '../../sweetAlert';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { CREATE_PROPERTY, UPDATE_PROPERTY } from '../../../apollo/user/mutation';
@@ -30,7 +30,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 	const {
 		loading: getPropertyLoading,
 		data: getPropertyData,
-		error: getPropertysError,
+		error: getPropertyError,
 		refetch : getPropertyRefetch,
 	} = useQuery(GET_PROPERTY, {
 		fetchPolicy: 'network-only',
@@ -137,6 +137,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 					input: insertPropertyData,
 				},
 			});
+			await sweetMixinSuccessAlert('This property has been created successfully');
 			await router.push({
 				pathname: '/mypage',
 				query: {
@@ -156,6 +157,14 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 				variables: {
 					input: insertPropertyData,
 				}
+			});
+
+			await sweetMixinSuccessAlert('This property has been updated successfully');
+			await router.push({
+				pathname: '/mypage',
+				query: {
+					category: 'myProperties',
+				},
 			});
 		} catch (err: any) {
 			sweetErrorHandling(err).then();

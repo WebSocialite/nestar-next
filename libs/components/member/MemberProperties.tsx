@@ -31,7 +31,7 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 		notifyOnNetworkStatusChange : true,
 		onCompleted: (data: T) => {
 			setAgentProperties(data?.getMemberFollowers?.list);
-			setTotal(data?.getMemberFollowers?.metaCounter[0]?.total);
+			setTotal(data?.getMemberFollowers?.metaCounter[0]?.total ?? 0);
 		},
 	});
 

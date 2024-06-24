@@ -26,7 +26,7 @@ const MemberArticles: NextPage = ({ initialInput, ...props }: any) => {
 
 	const {
 		loading: boardArticlesLoading,
-		data: boardArticlesData,
+		data: boardArticles,  //boardArticlesData xxCHECKxx
 		error: boardArticlesError,
 		refetch : boardArticlesRefetch,
 	} = useQuery(GET_BOARD_ARTICLES, {

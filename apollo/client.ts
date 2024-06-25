@@ -43,7 +43,7 @@ class LoggingWebSocket {
 		this.socket.onmessage = (msg) => {
 			console.log("WebSocket message:", msg.data);
 		};
-		this.socket.onerror = (msg) => {
+		this.socket.onerror = (error) => {
 			console.log("WebSocket error:", error);
 		};
 	}

@@ -34,9 +34,9 @@ const AdminCommunity: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [removeBoardArticleByAdmin] = useMutation(REMOVE_BOARD_ARTICLE_BY_ADMIN);
 
 	const {
-		loading: getAllBoardArticlesByAdminLoading,
+		loading: getAllBoardArticlesByAdminLoading, ////checkkk spelling
 		data: getAllBoardArticlesByAdminData,
-		error: getAllBoardArticlesByAdminError,
+		error: getAllBoardArticlesByAdminError,    ////checkkk spelling
 		refetch : getAllBoardArticlesByAdminRefetch,
 	} = useQuery(GET_ALL_BOARD_ARTICLES_BY_ADMIN, {
 		fetchPolicy: 'network-only',

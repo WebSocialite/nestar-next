@@ -153,6 +153,8 @@ export const GET_ALL_BOARD_ARTICLES_BY_ADMIN = gql`
  *         COMMENT        *
  *************************/
 
+
+
 export const GET_COMMENTS = gql`
 	query GetComments($input: CommentsInquiry!) {
 		getComments(input: $input) {

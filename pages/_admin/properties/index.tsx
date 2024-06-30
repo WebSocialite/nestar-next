@@ -100,12 +100,12 @@ const AdminProperties: NextPage = ({ initialInquiry, ...props }: any) => {
 		}
 	};
 
-	const removePropertyHandler = async (id: string) => {
+	const removePropertyHandler = async (_id: string) => {
 		try {
 			if (await sweetConfirmAlert('Are you sure to remove?')) {
 				await removePropertyByAdmin({
 					variables: {
-						input: id,
+						input: _id,
 					},
 				});
 
